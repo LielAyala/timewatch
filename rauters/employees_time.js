@@ -18,11 +18,10 @@ router.post("/Add",(req, res) => {
     // res.send("good morning");
 });
 
-
-router.patch("/Edit/:row_id",(req, res) => {
-    let id=req.params.row_id;
+router.patch("/Edit/:row_name",(req, res) => {
+    let name=req.params.row_name;
     let time_end=req.body.time_end;
-    let q=`UPDATE employees  SET time_end ='${time_end}' WHERE id='${id}' `;
+    let q=`UPDATE employees_time  SET time_end ='${time_end}' WHERE name='${name}' `;
     db_pool.query(q, function(err, rows, fields){
         if(err){
             res.status(500).json({message: err})
@@ -32,9 +31,11 @@ router.patch("/Edit/:row_id",(req, res) => {
         }
     });
 });
+
+
 router.delete("/Del/:row_id",(req, res) => {
     let id=req.params.row_id;
-    let q=`DELETE FROM \`employees\` WHERE id='${id}' `;
+    let q=`DELETE FROM \`employees_time\` WHERE id='${id}' `;
     db_pool.query(q, function(err, rows, fields){
         if(err){
             res.status(500).json({message: err})
@@ -44,8 +45,11 @@ router.delete("/Del/:row_id",(req, res) => {
         }
     });
 });
+
+
+
 router.get("/List",(req, res) => {
-    let q="SELECT * FROM `employees` ";
+    let q="SELECT * FROM `employees_time` ";
     db_pool.query(q, function(err, rows, fields){
         if(err)
         {
@@ -56,7 +60,6 @@ router.get("/List",(req, res) => {
             res.status(200).json(rows );
         }
     });
-
 
     // res.send("good morning");
 });
