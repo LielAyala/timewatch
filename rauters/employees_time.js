@@ -3,7 +3,7 @@ const router = express.Router()
 module.exports = router;
 
 router.post("/Add",(req, res) => {
-   let {id ,time_start	}=req.body;
+    let {id ,time_start	}=req.body;
     let q=`INSERT INTO \`employees_time\` (name,time_start) VALUES `;
     q += `((SELECT name FROM employees WHERE id = ${id}),`;
     q += `'${time_start	}')`;
