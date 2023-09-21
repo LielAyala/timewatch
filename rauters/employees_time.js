@@ -18,7 +18,20 @@ router.post("/Add",(req, res) => {
     // res.send("good morning");
 });
 
-router.patch("/Edit/:row_name",(req, res) => {
+router.patch("/EditS/:row_name",(req, res) => {
+    let name=req.params.row_name;
+    let time_start=req.body.time_start;
+    let q=`UPDATE employees_time  SET time_start ='${time_start}' WHERE name='${name}' `;
+    db_pool.query(q, function(err, rows, fields){
+        if(err){
+            res.status(500).json({message: err})
+            // throw err;
+        }else{
+            res.status(200).json({message: "OK"});
+        }
+    });
+});
+router.patch("/EditE/:row_name",(req, res) => {
     let name=req.params.row_name;
     let time_end=req.body.time_end;
     let q=`UPDATE employees_time  SET time_end ='${time_end}' WHERE name='${name}' `;
@@ -45,8 +58,6 @@ router.delete("/Del/:row_id",(req, res) => {
         }
     });
 });
-
-
 
 router.get("/List",(req, res) => {
     let q="SELECT * FROM `employees_time` ";
