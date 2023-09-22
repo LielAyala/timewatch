@@ -7,7 +7,7 @@ function FilterData(el){
     if(srchTerm==="")
         return true;
     let reg=new RegExp(srchTerm,"i");
-    return reg.test(el.Name);
+    return reg.test(el.name);
 }
 
 // Create
@@ -17,7 +17,8 @@ function CreateTable(){
     let str="";
     for(let line of data){
         str+="<tr>";
-        str+=`<td><button onclick="editLine(${line.id});">edit</button></td>`;
+        str+=` <input type="text" name="namei"  id="namei"  placeholder="name"/>`;
+        str+=`<td><button onclick="editLine(${line.id},namei);">edit</button></td>`;
         str+="<td>"+line.id+"</td>";
         str+="<td>"+line.name+"</td>";
         str+=`<td><button onclick="deleteLine(${line.id});">delete</button></td>`;
@@ -36,10 +37,11 @@ async function getList() {
 }
 
 // Update
-async function editLine(id) {
+async function editLine(id,name) {
     let objToServer={};
+    name=document.getElementById("namei").value;
     objToServer.id=id;
-    objToServer.name=document.getElementById("name").value;
+    objToServer.name=name;
     // objToServer.pob=document.getElementById("pob").value;
     let response = await fetch('/employees/Edit', {
             method: 'PATCH',
