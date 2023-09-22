@@ -1,6 +1,5 @@
 let raw_data=[];
 let srchTerm="";
-
 // filter Data
 function FilterData(el){
     console.log("FilterData::",el);
@@ -9,7 +8,6 @@ function FilterData(el){
     let reg=new RegExp(srchTerm,"i");
     return reg.test(el.name);
 }
-
 // Create
 function CreateTable(){
     srchTerm=document.getElementById("filterField").value;
@@ -17,8 +15,8 @@ function CreateTable(){
     let str="";
     for(let line of data){
         str+="<tr>";
-        str+=` <input type="text" name="namei"  id="namei"  placeholder="name"/>`;
-        str+=`<td><button onclick="editLine(${line.id},namei);">edit</button></td>`;
+        str+=`<td> <input type="text" name="namei"  id="namei-${line.id}"  placeholder="name"/></td>`;
+        str+=`<td><button onclick="editLine(${line.id});">edit</button></td>`;
         str+="<td>"+line.id+"</td>";
         str+="<td>"+line.name+"</td>";
         str+=`<td><button onclick="deleteLine(${line.id});">delete</button></td>`;
@@ -37,12 +35,11 @@ async function getList() {
 }
 
 // Update
-async function editLine(id,name) {
+async function editLine(id) {
     let objToServer={};
-    name=document.getElementById("namei").value;
+    let name=document.getElementById(`namei-${id}`).value;
     objToServer.id=id;
     objToServer.name=name;
-    // objToServer.pob=document.getElementById("pob").value;
     let response = await fetch('/employees/Edit', {
             method: 'PATCH',
             headers: {
@@ -54,7 +51,6 @@ async function editLine(id,name) {
     getList();
 }
 getList();
-
 // Delete
 async function deleteLine(id) {
     let objToServer={};
@@ -71,7 +67,6 @@ async function deleteLine(id) {
     // console.log(data);
     getList();
 }
-
 // Add
 async function addNewLine() {
     let name=document.getElementById("name").value;

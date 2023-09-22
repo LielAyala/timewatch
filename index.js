@@ -10,7 +10,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "js")));
 
-var db_M = require('./database');
+let db_M = require('./database');
 global.db_pool = db_M.pool;
 
 //------------------------------------------------------------------------------------------//

@@ -2,11 +2,13 @@
 
 <main>
     <h1 id="employees">
-        Employees
+        Employees TIME
     </h1>
 
     <div id="AddForm">
-        <input type="text" name="name"  id="name"  placeholder="name"/>
+        <input type="text" name="id"  id="id"  placeholder="name"/>
+        <input type="time" name="time_start"  id="time_start"  placeholder="time_start"/>
+
         <button id="Add" onclick="addNewLine();">Add</button>
 
 
@@ -16,6 +18,7 @@
     <input type="search" id="filterField"  placeholder="Search..." oninput="CreateTable()">
     <hr/>
 
+    <div id="clock"></div>
     <table id="table">
         <thead>
         <tr>
@@ -23,12 +26,16 @@
             <th>ENTER</th>
             <th>ID</th>
             <th>Name</th>
+            <th>time_start</th>
+            <th>time_end</th>
+            <th>date</th>
             <th>Delete</th>
             <th></th>
         </tr>
         </thead>
         <tbody id="mainEmployees">  </tbody>
     </table>
-    <script src="/jsEmployees.js"></script>
+    <script src="/jsEmployees_time.js"></script>
 </main>
+
 <% include("botoom.ejs") %>
