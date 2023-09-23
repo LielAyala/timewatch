@@ -8,29 +8,7 @@ function FilterData(el){
     let reg=new RegExp(srchTerm,"i");
     return reg.test(el.name);
 }
-//
-// function updateClock() {
-//     const clockElement = document.getElementById("clock");
-//     const currentTime = new Date();
-//     const hours = currentTime.getHours();
-//     const minutes = currentTime.getMinutes();
-//     const seconds = currentTime.getSeconds();
-//
-//     const timeString = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
-//     clockElement.textContent = timeString;
-// }
-//
-// function padZero(number) {
-//     return (number < 10) ? "0" + number : number;
-// }
-//
-// // עדכון השעון באופן רציף בקצב שנייה
-// setInterval(updateClock, 1000);
-//
-// // קריאה ראשונית לפונקציה להצגת הזמן הנוכחי
-// updateClock();
-//
-//
+
 
 // Create
 function CreateTable(){

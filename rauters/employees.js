@@ -6,6 +6,7 @@ router.get("/",function (req,res){
 })
 router.post("/Add",(req, res) => {
     let name=req.body.name;
+
     let q=`INSERT INTO \`employees\` (\`name\`) VALUES ('${name}')`;
     db_pool.query(q, function(err, rows, fields){
         if(err){
@@ -13,15 +14,7 @@ router.post("/Add",(req, res) => {
 
         }else{
             res.status(200).json({message: "OK"});
-        }
-    });
-    let l=`INSERT INTO \`employees_time\` (\`name\`) VALUES ('${name}')`;
-    db_pool.query(l, function(err, rows, fields){
-        if(err){
-           res.status(500).json({message: err})
-
-        }else{
-            res.status(200).json({message: "OK"});
+            // let l=`INSERT INTO \`employees_time\` (\`name\`) VALUES ('${name}')`;
         }
     });
 });
