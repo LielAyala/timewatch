@@ -5,6 +5,9 @@ module.exports = router;
 router.get("/",(req, res) => {
     res.render("employees_time",{});
 });
+router.get("/l",(req, res) => {
+    res.render("emloyees_time_list",{});
+});
 router.post("/Add",(req, res) => {
     let {id ,time_start	}=req.body;
     let q=`INSERT INTO \`employees_time\` (name,time_start) VALUES `;

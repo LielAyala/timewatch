@@ -25,4 +25,5 @@ app.listen(port, () => {            //server starts listening for any attempts f
     console.log(`Now listening on port http://localhost:${port}`);
     console.log(`Now listening on port http://localhost:${port}/employees`);
     console.log(`Now listening on port http://localhost:${port}/employees_time`);
+    console.log(`Now listening on port http://localhost:${port}/employees_time/l`);
 });
