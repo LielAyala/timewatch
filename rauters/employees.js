@@ -17,6 +17,8 @@ router.post("/Add",(req, res) => {
         }
     });
     // res.send("good morning");
+    // res.send("good morning");
+
 });
 router.patch("/Edit",(req, res) => {
     let id=req.body.id;
