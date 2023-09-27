@@ -8,6 +8,7 @@ function FilterData(el){
         return true;
     let reg=new RegExp(srchTerm,"i");
     return reg.test(el.name);
+
 }
 // Create
 function CreateTable(){
