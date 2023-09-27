@@ -1,6 +1,6 @@
 let raw_data=[];
 let srchTerm="";
-// filter Data
+//סינון ערכים
 function FilterData(el){
     if(srchTerm==="")
         return true;
@@ -11,9 +11,7 @@ setInterval(() => {
     let shaon = new Date();
     document.getElementById("shaon").innerHTML = shaon.toLocaleTimeString();
 }, 1000);
-// Add
 async function addstart() {
-
 
     let selectedOption = document.getElementById("select");
     let selectedName = selectedOption.options[selectedOption.selectedIndex].text;
@@ -47,8 +45,6 @@ async function addend() {
 }
 //רשימה נגללת
 async function listE(){
-
-
 
     let response = await fetch('/employees/List');
     let data = await response.json();

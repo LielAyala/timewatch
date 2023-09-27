@@ -23,9 +23,6 @@ router.post("/Add",(req, res) => {
     });
     // res.send("good morning");
 });
-
-
-
 router.post("/Adds",(req, res) => {
 let {name} = req.body;
 let Query = `INSERT INTO \`employees_time\` (name, time_start, date) VALUES ('${name}', CURRENT_TIMESTAMP(), CURRENT_DATE())`;
@@ -55,8 +52,6 @@ router.post("/Adde",(req, res) => {
         }
     });
 });
-
-
 router.patch("/EditS",(req, res) => {
     let name=req.body.name;
     let time_start=req.body.time_start;
@@ -95,7 +90,6 @@ router.delete("/Del",(req, res) => {
         }
     });
 });
-
 router.get("/List",(req, res) => {
     let q="SELECT * FROM `employees_time` ";
     db_pool.query(q, function(err, rows, fields){

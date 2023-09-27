@@ -2,15 +2,16 @@ let raw_data=[];
 let srchTerm="";
 // filter Data
 function FilterData(el){
+
     console.log("FilterData::",el);
     if(srchTerm==="")
         return true;
     let reg=new RegExp(srchTerm,"i");
     return reg.test(el.name);
 }
-
 // Create
 function CreateTable(){
+
     srchTerm=document.getElementById("filterField").value;
     let data=raw_data.filter(FilterData);
     let str="";
@@ -27,6 +28,7 @@ function CreateTable(){
         str+="</tr>";
     }
     document.getElementById("mainEmployeesi").innerHTML=str;
+
 }
 async function getList() {
     let response = await fetch('/employees_time/List');
@@ -34,8 +36,6 @@ async function getList() {
     raw_data = data;
     CreateTable();
 }
-getList();
-
 async function editLine(id) {
     let objToServer={};
     let name=document.getElementById(`namei-${id}`).value;
@@ -52,7 +52,6 @@ async function editLine(id) {
     );
     getList();
 }
-
 async function deleteLine(id) {
     let objToServer={};
     objToServer.id=id;
@@ -68,3 +67,51 @@ async function deleteLine(id) {
     // console.log(data);
     getList();
 }
+async function listE(){
+
+    let response = await fetch('/employees_time/List');
+    let data = await response.json();
+    let selectElement = document.getElementById("select");
+
+    for (let row of data) {
+        let option = document.createElement("option");
+        option.value = row.id;
+        option.text = row.name;
+        selectElement.appendChild(option);
+    }
+}
+listE();
+getList();
+
+
+
+async function loadEmployeeNames() {
+    let selectElement = document.getElementById("select");
+
+    try {
+        // שלף את השמות מהשרת
+        let response = await fetch('/employees/List');
+        let data = await response.json();
+
+        // צור את האפשרויות ב-<select> על פי השמות
+        for (let employee of data) {
+            let option = document.createElement("option");
+            option.value = employee.name; // השם שיש להשתמש בו
+            option.text = employee.name;  // השם שיצג באפשרויות
+            selectElement.appendChild(option);
+        }
+    } catch (error) {
+        console.error("Error loading employee names:", error);
+    }
+}
+
+// קריאה לפונקציה לטעינת השמות כאשר הדף נטען
+window.addEventListener("load", loadEmployeeNames);
+
+
+
+
+
+
+
+
