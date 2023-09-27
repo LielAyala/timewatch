@@ -1,41 +1,19 @@
-<% include("top.ejs") %>
+<%- include("top.ejs") %>
 
 <main>
-    <h1 id="employees">
-        Employees TIME
-    </h1>
-
-    <div id="AddForm">
-        <input type="text" name="id"  id="id"  placeholder="name"/>
-        <input type="time" name="time_start"  id="time_start"  placeholder="time_start"/>
-
-        <button id="Add" onclick="addNewLine();">Add</button>
-
-
-        <hr/>
-    </div>
+    <h1 id="employees">Employees TIME</h1>
     <br/>
-    <input type="search" id="filterField"  placeholder="Search..." oninput="CreateTable()">
-    <hr/>
+    <select onchange=" CreateTable();" id="select">
+        <option id="option" disabled selected value=" ">בחר שם </option>
+    </select>
 
-    <div id="clock"></div>
-    <table id="table">
-        <thead>
-        <tr>
-            <th>Edit</th>
-            <th>ENTER</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>time_start</th>
-            <th>time_end</th>
-            <th>date</th>
-            <th>Delete</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody id="mainEmployees">  </tbody>
-    </table>
+    <div id="shaon"></div>
+
+    <button id="start" onclick="addstart();">start</button>
+
+    <button id="end" onclick="addend();">end </button>
+<!--    <tbody id="mainTable">  </tbody>-->
     <script src="/jsEmployees_time.js"></script>
 </main>
 
-<% include("botoom.ejs") %>
+<%- include("botoom.ejs") %>

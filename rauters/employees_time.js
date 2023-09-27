@@ -24,6 +24,39 @@ router.post("/Add",(req, res) => {
     // res.send("good morning");
 });
 
+
+
+router.post("/Adds",(req, res) => {
+let {name} = req.body;
+let Query = `INSERT INTO \`employees_time\` (name, time_start, date) VALUES ('${name}', CURRENT_TIMESTAMP(), CURRENT_DATE())`;
+
+    db_pool.query(Query, (err, rows) => {
+    if (err)
+        res.status(500).json({message: err});// throw err;
+    else
+        res.status(200).json({message: "Clock in", lastId: rows.insertId});// success;
+})
+});
+router.post("/Adde",(req, res) => {
+
+    let { name } = req.body;
+    let Query = `UPDATE employees_time
+    SET time_end = CURRENT_TIMESTAMP()
+    WHERE name = '${name}'
+    AND date = CURRENT_DATE()`;
+
+    db_pool.query(Query, (err, rows) => {
+        if (err)
+            res.status(500).json({ message: err }); // throw err;
+        else if (rows.affectedRows === 0) {
+            res.status(404).json({ message: "No record found for the given name and date" });
+        } else {
+            res.status(200).json({ message: "Clock out successfully" });
+        }
+    });
+});
+
+
 router.patch("/EditS",(req, res) => {
     let name=req.body.name;
     let time_start=req.body.time_start;
@@ -50,8 +83,6 @@ router.patch("/EditE",(req, res) => {
         }
     });
 });
-
-
 router.delete("/Del",(req, res) => {
     let id=req.body.id;
     let q=`DELETE FROM \`employees_time\` WHERE id='${id}' `;

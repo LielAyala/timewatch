@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router()
 module.exports = router;
 router.get("/",function (req,res){
-    res.render("employees",{});
+    res.render("employees.ejs");
 })
 router.post("/Add",(req, res) => {
     let name=req.body.name;
